@@ -65,7 +65,7 @@ function addTaskToArray (taskText, taskLink) {
         id : Date.now(),
         title : taskText,
         link : taskLink,
-        complated : true,
+        complated : false,
     };
     arrayOfTasks.push(task);
     // console.log(arrayOfTasks);
