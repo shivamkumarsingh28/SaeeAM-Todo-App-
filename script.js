@@ -14,7 +14,7 @@ fetch('https://script.googleusercontent.com/macros/echo?user_content_key=11auq0Y
 
                     let td = cur.map(value => `<code>${value}</code>`)
 
-                    return prev + `<div class="tasks">${td.join(" ")}<input type="checkbox"/></div>`
+                    return prev + `<div class="tasks">${td.join(" ")}</div>`
                 }, "\r")
                 document.querySelector("#dbtask").innerHTML = tr;
  });
