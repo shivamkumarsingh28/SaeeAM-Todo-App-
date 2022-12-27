@@ -1,11 +1,34 @@
 fetch('https://script.googleusercontent.com/macros/echo?user_content_key=11auq0YCcgZ6HDbED44p_cZaiVGgUgY6N3scddHCDr2AGB4hWo34z2ADudW6isSQIrKHznnG0ZJOUeIz3sl3DvxbBX2GbsxSm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnNBdIpmx2pC0uVKlMqrQcxp8wNkaW-Lsx81iRH9XJIiPpSrrrhPYFn77iSn88O6EH1yndWVvKQBLnRCsYtEnDjXwKqV75iVJ-w&lib=MK6OwehVkFE9UxOZiRiNYMIOOOqnL9WSI')
             .then(res => res.json())
             .then(data => {
+                // let tr= [];
+                // console.log(data.content.length)
+                // for (i=2; i<data.content.length; i++){
+                //     tr += data.content[i];
+                // }
+                // document.querySelector("#dbtask").innerHTML = tr;
+                
+                
+                
                 let tr = data.content.reduce((prev, cur) => {
-                    let td = cur.map(e => `<td>${e}</td>`)
-                    return prev + `<tr>${td.join("")}</tr>`
+
+                    let td = cur.map(value => `<code>${value}</code>`)
+
+                    return prev + `<div class="tasks">${td.join(" ")}<input type="checkbox"/></div>`
+
+                //     tr.forEach((values,keys)=>{
+                //         document.write(values,keys+"<br>")
+                //       })
+
+                // let datas = [];
+                //     for (i=0; i<cur.length; i++) {
+                //         datas += cur[2] +"" + cur[3]
+                //         // console.log(cur[2]+" "+cur[3])
+                     
+                //     }
+                // console.log(datas)
                 }, "\r")
-                document.querySelector("table").innerHTML = tr;
+                document.querySelector("#dbtask").innerHTML = tr;
  });
 
 
@@ -21,7 +44,7 @@ fetch('https://script.googleusercontent.com/macros/echo?user_content_key=11auq0Y
          .then(res => res.text())
          .then(data => {
              alert(data);
-             document.querySelector("#sub").value = "Submit"
+             document.querySelector("#sub").value = "Add Database"
              form.reset();
          });
  })
