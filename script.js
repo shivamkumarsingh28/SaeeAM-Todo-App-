@@ -14,7 +14,7 @@ fetch('https://script.googleusercontent.com/macros/echo?user_content_key=11auq0Y
 
                     let td = cur.map(value => `<code>${value}</code>`)
 
-                    return prev + `<div class="tasks">${td.join(" ")}<input type="checkbox"/></div>`
+                    return prev + `<div class="tasks">${td.join("&nbsp&nbsp&nbsp&nbsp")}<input type="checkbox"/></div>`
 
                 //     tr.forEach((values,keys)=>{
                 //         document.write(values,keys+"<br>")
