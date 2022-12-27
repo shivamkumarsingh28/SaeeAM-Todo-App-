@@ -14,19 +14,7 @@ fetch('https://script.googleusercontent.com/macros/echo?user_content_key=11auq0Y
 
                     let td = cur.map(value => `<code>${value}</code>`)
 
-                    return prev + `<div class="tasks">${td.join("&nbsp&nbsp&nbsp&nbsp")}<input type="checkbox"/></div>`
-
-                //     tr.forEach((values,keys)=>{
-                //         document.write(values,keys+"<br>")
-                //       })
-
-                // let datas = [];
-                //     for (i=0; i<cur.length; i++) {
-                //         datas += cur[2] +"" + cur[3]
-                //         // console.log(cur[2]+" "+cur[3])
-                     
-                //     }
-                // console.log(datas)
+                    return prev + `<div class="tasks">${td.join(" ")}<input type="checkbox"/></div>`
                 }, "\r")
                 document.querySelector("#dbtask").innerHTML = tr;
  });
@@ -50,6 +38,7 @@ fetch('https://script.googleusercontent.com/macros/echo?user_content_key=11auq0Y
  })
 
 let inputEle = document.querySelector(".input");
+let inputEl = document.querySelector("#link");
 let submitEle = document.querySelector("#add");
 let tasksDiv = document.querySelector(".tasks");
 let containerDiv = document.querySelector(".container");
@@ -64,16 +53,19 @@ getTaskFromLocalStorage();
 
 submitEle.onclick = function() {
     if(inputEle.value !== "") {
-        addTaskToArray(inputEle.value);
+        addTaskToArray(inputEle.value, inputEl.value);
+        
         inputEle.value ="";
+        inputEl.value ="";
     }
 }
 
-function addTaskToArray (taskText) {
+function addTaskToArray (taskText, taskLink) {
     const task = {
         id : Date.now(),
         title : taskText,
-        complated : false,
+        link : taskLink,
+        complated : true,
     };
     arrayOfTasks.push(task);
     // console.log(arrayOfTasks);
@@ -93,6 +85,7 @@ function addTaskToPage(arrayOfTasks) {
         }
         div.setAttribute("data-id",task.id);
         div.appendChild(document.createTextNode(task.title));
+        div.appendChild(document.createTextNode(task.link));
         let span = document.createElement("span");
         span.className = "del";
         span.appendChild(document.createTextNode("Delete"))
