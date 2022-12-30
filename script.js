@@ -31,7 +31,6 @@ fetch('https://script.googleusercontent.com/macros/echo?user_content_key=11auq0Y
  })
 
 let inputEle = document.querySelector(".input");
-let inputEl = document.querySelector("#link");
 let submitEle = document.querySelector("#add");
 let tasksDiv = document.querySelector(".tasks");
 let containerDiv = document.querySelector(".container");
@@ -46,18 +45,16 @@ getTaskFromLocalStorage();
 
 submitEle.onclick = function() {
     if(inputEle.value !== "") {
-        addTaskToArray(inputEle.value, inputEl.value);
+        addTaskToArray(inputEle.value);
         
         inputEle.value ="";
-        inputEl.value ="";
     }
 }
 
-function addTaskToArray (taskText, taskLink) {
+function addTaskToArray (taskText) {
     const task = {
         id : Date.now(),
         title : taskText,
-        link : taskLink,
         complated : false,
     };
     arrayOfTasks.push(task);
@@ -78,7 +75,6 @@ function addTaskToPage(arrayOfTasks) {
         }
         div.setAttribute("data-id",task.id);
         div.appendChild(document.createTextNode(task.title));
-        div.appendChild(document.createTextNode(task.link));
         let span = document.createElement("span");
         span.className = "del";
         span.appendChild(document.createTextNode("Delete"))
